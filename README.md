@@ -1,2 +1,2 @@
-# hoshiyomidou
+# naruhodou
 なるほ堂HP
