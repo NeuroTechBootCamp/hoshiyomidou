@@ -1,2 +1,2 @@
 # hoshiyomidou
-星読み堂HP
+なるほ堂HP

@@ -1,0 +1,91 @@
+@charset "utf-8";
+/* =====================================================================
+   なるほ堂 - style.css (skeleton)
+   ※ 配色変数と最小限のレイアウト骨格のみ。詳細デザインはここに追記。
+   ===================================================================== */
+
+/* ---- アースカラー・パレット（参考サイトに合わせて後で調整可） ---- */
+:root {
+  --color-bg:        #f3ece0; /* 背景：温かいオフホワイト */
+  --color-surface:   #e9dfcf; /* 面：サンド */
+  --color-ink:       #3b3329; /* 本文：濃いブラウン */
+  --color-ink-soft:  #6f6353; /* 補助テキスト */
+  --color-accent:    #b08d62; /* アクセント：ブロンズ */
+  --color-accent-dk: #8a6a44; /* アクセント（濃） */
+  --color-line:      #06c755; /* LINEグリーン */
+  --color-border:    rgba(120, 90, 60, 0.18);
+
+  --font-serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-sans:  "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+
+  --maxw: 1080px;
+  --radius: 8px;
+}
+
+/* ---- リセット（最小限） ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  line-height: 1.8;
+  font-size: 16px;
+}
+img, svg { max-width: 100%; height: auto; display: block; }
+a { color: var(--color-accent-dk); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 500; line-height: 1.4; }
+
+/* ---- レイアウト・ヘルパ ---- */
+.container { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: 20px; }
+.section { padding-block: 64px; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---- ヘッダー / ナビ（骨格） ---- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(243, 236, 224, 0.9); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--color-border);
+}
+.site-header .container { display: flex; align-items: center; justify-content: space-between; min-height: 64px; }
+.brand { font-family: var(--font-serif); font-size: 20px; letter-spacing: 0.08em; }
+.global-nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+.global-nav a { color: var(--color-ink); font-size: 15px; }
+.nav-toggle { display: none; background: none; border: 0; font-size: 24px; cursor: pointer; }
+
+/* ---- ヒーロー（骨格のみ：鏡の演出はJS/CSSで追記） ---- */
+.hero { position: relative; min-height: 70vh; display: grid; place-items: center; }
+.hero__mirror { /* ← 鏡のインタラクション要素をここに実装 */ }
+.hero__copy { text-align: center; max-width: 40ch; }
+.hero__copy h1 { font-size: clamp(28px, 5vw, 44px); }
+
+/* ---- ボタン ---- */
+.btn {
+  display: inline-block; padding: 12px 28px; border-radius: var(--radius);
+  background: var(--color-accent); color: #fff; font-size: 15px;
+}
+.btn:hover { background: var(--color-accent-dk); text-decoration: none; }
+.btn--line { background: var(--color-line); }
+
+/* ---- カード / プロフィール（骨格） ---- */
+.card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 24px; }
+.lead { color: var(--color-ink-soft); }
+
+/* ---- フッター ---- */
+.site-footer { background: var(--color-surface); border-top: 1px solid var(--color-border); padding-block: 40px; margin-top: 64px; }
+.site-footer .container { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; font-size: 14px; }
+
+/* ---- レスポンシブ（骨格） ---- */
+@media (max-width: 768px) {
+  .global-nav { position: fixed; inset: 64px 0 auto 0; background: var(--color-bg); border-bottom: 1px solid var(--color-border); transform: translateY(-120%); transition: transform .3s; }
+  .global-nav[data-open="true"] { transform: translateY(0); }
+  .global-nav ul { flex-direction: column; gap: 0; padding: 8px 20px 16px; }
+  .global-nav li { border-bottom: 1px solid var(--color-border); }
+  .global-nav a { display: block; padding: 14px 0; }
+  .nav-toggle { display: block; }
+}
